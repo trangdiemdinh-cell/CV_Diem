@@ -1,59 +1,118 @@
+```html
 <!DOCTYPE html>
-<html>
-
+<html lang="vi">
 <head>
-  <title>My Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <title>Academic Portfolio - Researcher in Fisheries Ecology</title>
 
   <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
     body{
-      font-family: Arial;
-      background: #f0fdf4;
-      text-align: center;
-      padding-top: 100px;
+      font-family:'Inter', sans-serif;
+      background:#f4f8f5;
+      color:#1f2937;
+      line-height:1.6;
     }
 
-    h1{
-      color: green;
-      font-size: 50px;
+    header{
+      background:#1b5e20;
+      color:white;
+      padding:80px 20px;
+      text-align:center;
     }
 
-    p{
-      font-size: 22px;
+    header h1{
+      font-family:'Poppins', sans-serif;
+      font-size:3rem;
+      margin-bottom:10px;
     }
 
-    img{
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 30px;
+    header p{
+      font-size:1.1rem;
+      opacity:0.9;
     }
 
+    section{
+      max-width:1000px;
+      margin:auto;
+      padding:60px 20px;
+    }
+
+    .card{
+      background:white;
+      padding:30px;
+      border-radius:16px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom:30px;
+    }
+
+    h2{
+      color:#1b5e20;
+      margin-bottom:20px;
+      font-family:'Poppins', sans-serif;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      background:#1b5e20;
+      color:white;
+      margin-top:40px;
+    }
   </style>
 </head>
 
 <body>
 
-  <img
-    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop"
-  >
+  <header>
+    <h1>Academic Portfolio</h1>
+    <p>Researcher in Fisheries Ecology</p>
+  </header>
 
-  <h1>Dinh Trang Diem</h1>
+  <section>
+    
+    <div class="card">
+      <h2>About Me</h2>
+      <p>
+        Welcome to my academic portfolio website. 
+        This site presents my research interests, publications, projects, and academic activities in fisheries ecology and aquatic sciences.
+      </p>
+    </div>
 
-  <p>
-    Researcher in Fisheries Ecology
-  </p>
+    <div class="card">
+      <h2>Research Interests</h2>
+      <p>
+        • Fisheries Ecology<br>
+        • Aquatic Biodiversity<br>
+        • Environmental Monitoring<br>
+        • Sustainable Aquaculture
+      </p>
+    </div>
 
-  <p>
-    📧 trangdiemdinh@gmail.com
-  </p>
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email: your-email@example.com</p>
+    </div>
 
-  <p>
-    📍 Ca Mau, Vietnam
-  </p>
+  </section>
+
+  <footer>
+    © 2026 Academic Portfolio
+  </footer>
 
 </body>
-
 </html>
 ```

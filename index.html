@@ -1,371 +1,662 @@
-```tsx
-import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  GraduationCap,
-  Briefcase,
-  Award,
-  BookOpen,
-} from "lucide-react";
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-export default function App() {
-  return (
-    <div className="bg-[#f5f7f2] text-gray-800 font-[Inter] scroll-smooth">
-      
-      {/* NAVBAR */}
-      <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          <h1 className="text-2xl font-bold text-green-700">
-            Dinh Trang Diem
-          </h1>
+  <title>Dinh Trang Diem | Academic Portfolio</title>
 
-          <nav className="hidden md:flex gap-6 text-sm font-medium">
-            <a href="#about" className="hover:text-green-700">About</a>
-            <a href="#experience" className="hover:text-green-700">Experience</a>
-            <a href="#projects" className="hover:text-green-700">Projects</a>
-            <a href="#publications" className="hover:text-green-700">Publications</a>
-            <a href="#contact" className="hover:text-green-700">Contact</a>
-          </nav>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f5f7f2;
+      color:#1f2937;
+      line-height:1.6;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(1200px,90%);
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    header{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(255,255,255,0.85);
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+    }
+
+    .logo{
+      font-size:1.5rem;
+      font-weight:800;
+      color:#15803d;
+    }
+
+    .menu{
+      display:flex;
+      gap:28px;
+    }
+
+    .menu a{
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .menu a:hover{
+      color:#15803d;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      background:
+      linear-gradient(to right bottom,
+      #ecfdf5,
+      #ffffff,
+      #dcfce7);
+      padding-top:100px;
+    }
+
+    .hero-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero-text h4{
+      color:#15803d;
+      letter-spacing:3px;
+      margin-bottom:20px;
+      text-transform:uppercase;
+    }
+
+    .hero-text h1{
+      font-size:4rem;
+      line-height:1.1;
+      margin-bottom:25px;
+    }
+
+    .hero-text p{
+      color:#4b5563;
+      font-size:1.1rem;
+      margin-bottom:30px;
+    }
+
+    .info{
+      margin-bottom:30px;
+    }
+
+    .info div{
+      margin-bottom:10px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border-radius:14px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#15803d;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#166534;
+    }
+
+    .btn-outline{
+      border:2px solid #15803d;
+      color:#15803d;
+    }
+
+    .btn-outline:hover{
+      background:#dcfce7;
+    }
+
+    .hero-image{
+      display:flex;
+      justify-content:center;
+      position:relative;
+    }
+
+    .hero-image::before{
+      content:'';
+      position:absolute;
+      width:320px;
+      height:320px;
+      background:#86efac;
+      filter:blur(80px);
+      opacity:0.5;
+      border-radius:50%;
+    }
+
+    .hero-image img{
+      width:360px;
+      height:360px;
+      object-fit:cover;
+      border-radius:50%;
+      border:8px solid white;
+      box-shadow:0 20px 50px rgba(0,0,0,0.15);
+      position:relative;
+      z-index:2;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:100px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:2.8rem;
+      color:#166534;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#6b7280;
+    }
+
+    /* ABOUT */
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+    }
+
+    .card{
+      background:white;
+      border-radius:24px;
+      padding:35px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .stat-box h3{
+      color:#15803d;
+      font-size:2rem;
+      margin-bottom:8px;
+    }
+
+    /* EXPERIENCE */
+
+    .timeline{
+      border-left:4px solid #15803d;
+      padding-left:30px;
+    }
+
+    .timeline-item{
+      margin-bottom:40px;
+      position:relative;
+    }
+
+    .timeline-item::before{
+      content:'';
+      width:18px;
+      height:18px;
+      background:#15803d;
+      border-radius:50%;
+      position:absolute;
+      left:-41px;
+      top:6px;
+    }
+
+    /* PROJECTS */
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    /* CONTACT */
+
+    .contact{
+      background:linear-gradient(to right bottom,#166534,#14532d);
+      color:white;
+      text-align:center;
+    }
+
+    .contact p{
+      color:#dcfce7;
+      margin-top:10px;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      background:#052e16;
+      color:white;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero-content,
+      .about-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-text{
+        text-align:center;
+      }
+
+      .buttons{
+        justify-content:center;
+      }
+
+      .menu{
+        display:none;
+      }
+
+      .hero-text h1{
+        font-size:3rem;
+      }
+
+      .hero-image img{
+        width:280px;
+        height:280px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header>
+    <div class="container">
+      <nav>
+
+        <div class="logo">
+          Dinh Trang Diem
         </div>
-      </header>
 
-      {/* HERO */}
-      <section className="min-h-screen flex items-center pt-28 px-6 bg-gradient-to-br from-green-50 via-white to-green-100">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-          
-          {/* TEXT */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="text-green-700 font-semibold mb-4 uppercase tracking-widest">
-              Researcher in Fisheries Ecology
-            </p>
-
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-              Dinh Trang Diem
-            </h1>
-
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              Researcher specializing in fisheries ecology, aquatic biodiversity,
-              Mekong River ecosystem monitoring, sustainable aquaculture, and
-              aquatic resource management.
-            </p>
-
-            <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3">
-                <Mail className="text-green-700 w-5 h-5" />
-                <span>trangdiemdinh@gmail.com</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Phone className="text-green-700 w-5 h-5" />
-                <span>+84 918 554 389</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <MapPin className="text-green-700 w-5 h-5" />
-                <span>Ca Mau Province, Vietnam</span>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <button className="px-6 py-3 rounded-xl bg-green-700 text-white hover:bg-green-800 transition">
-                Download CV
-              </button>
-
-              <button className="px-6 py-3 rounded-xl border border-green-700 text-green-700 hover:bg-green-50 transition">
-                Contact
-              </button>
-            </div>
-          </motion.div>
-
-          {/* IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9 }}
-            className="flex justify-center"
-          >
-            <div className="relative">
-              
-              <div className="absolute inset-0 bg-green-300 blur-3xl opacity-30 rounded-full"></div>
-
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
-                alt="Profile"
-                className="relative w-[350px] h-[350px] object-cover rounded-full border-8 border-white shadow-2xl"
-              />
-            </div>
-          </motion.div>
+        <div class="menu">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
         </div>
-      </section>
 
-      {/* ABOUT */}
-      <section id="about" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-10 text-center text-green-800">
-            About Me
-          </h2>
+      </nav>
+    </div>
+  </header>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            
-            <div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                I am currently working as a researcher at the Research Institute
-                for Aquaculture No.2 (RIA2), focusing on fisheries ecology,
-                aquatic biodiversity conservation, fish migration, ecosystem
-                assessment, and sustainable aquaculture development in the
-                Mekong Delta.
-              </p>
-            </div>
+  <!-- HERO -->
 
-            <div className="grid grid-cols-2 gap-6">
-              
-              <div className="bg-white rounded-2xl p-6 shadow-md">
-                <h3 className="text-3xl font-bold text-green-700 mb-2">
-                  8+
-                </h3>
-                <p className="text-gray-600">Years Research Experience</p>
-              </div>
+  <section class="hero">
 
-              <div className="bg-white rounded-2xl p-6 shadow-md">
-                <h3 className="text-3xl font-bold text-green-700 mb-2">
-                  15+
-                </h3>
-                <p className="text-gray-600">Research Projects</p>
-              </div>
+    <div class="container hero-content">
 
-              <div className="bg-white rounded-2xl p-6 shadow-md">
-                <h3 className="text-3xl font-bold text-green-700 mb-2">
-                  10+
-                </h3>
-                <p className="text-gray-600">Scientific Publications</p>
-              </div>
+      <div class="hero-text">
 
-              <div className="bg-white rounded-2xl p-6 shadow-md">
-                <h3 className="text-3xl font-bold text-green-700 mb-2">
-                  20+
-                </h3>
-                <p className="text-gray-600">International Activities</p>
-              </div>
+        <h4>
+          Researcher in Fisheries Ecology
+        </h4>
 
-            </div>
+        <h1>
+          Dinh Trang Diem
+        </h1>
+
+        <p>
+          Researcher specializing in fisheries ecology, aquatic biodiversity,
+          Mekong River ecosystem monitoring, sustainable aquaculture,
+          and aquatic resource management.
+        </p>
+
+        <div class="info">
+
+          <div>
+            📧 trangdiemdinh@gmail.com
           </div>
-        </div>
-      </section>
 
-      {/* EXPERIENCE */}
-      <section
-        id="experience"
-        className="py-24 px-6 bg-white"
-      >
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-14 text-center text-green-800">
-            Experience
-          </h2>
-
-          <div className="bg-green-50 rounded-3xl p-10 shadow-md">
-            <div className="flex items-center gap-4 mb-4">
-              <Briefcase className="text-green-700 w-8 h-8" />
-
-              <div>
-                <h3 className="text-2xl font-bold">
-                  Research Institute for Aquaculture No.2
-                </h3>
-
-                <p className="text-green-700">
-                  Researcher • 2017 - Present
-                </p>
-              </div>
-            </div>
-
-            <p className="text-gray-600 leading-relaxed">
-              Conducting studies related to fisheries assessment,
-              aquatic biodiversity, ecosystem monitoring, fish migration,
-              fish passage, river ecology, and sustainable aquaculture.
-            </p>
+          <div>
+            📞 +84 918 554 389
           </div>
-        </div>
-      </section>
 
-      {/* PROJECTS */}
-      <section
-        id="projects"
-        className="py-24 px-6"
-      >
-        <div className="max-w-6xl mx-auto">
-
-          <h2 className="text-4xl font-bold mb-14 text-center text-green-800">
-            Research Projects
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-
-            {[
-              "Fish abundance and diversity monitoring",
-              "Sustainable shrimp farming",
-              "Aquatic biodiversity assessment",
-              "Mekong River fisheries monitoring",
-            ].map((project, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition"
-              >
-                <h3 className="text-2xl font-bold mb-4 text-green-700">
-                  {project}
-                </h3>
-
-                <p className="text-gray-600">
-                  Research and monitoring project related to aquatic ecosystems,
-                  fisheries management, and environmental sustainability.
-                </p>
-              </div>
-            ))}
-
+          <div>
+            📍 Ca Mau Province, Vietnam
           </div>
+
         </div>
-      </section>
 
-      {/* EDUCATION */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
+        <div class="buttons">
 
-          <h2 className="text-4xl font-bold mb-14 text-center text-green-800">
-            Education
-          </h2>
+          <a href="#" class="btn btn-primary">
+            Download CV
+          </a>
 
-          <div className="space-y-8">
+          <a href="#contact" class="btn btn-outline">
+            Contact
+          </a>
 
-            <div className="bg-green-50 rounded-3xl p-8 shadow-md">
-              <div className="flex items-center gap-4 mb-4">
-                <GraduationCap className="text-green-700 w-8 h-8" />
-
-                <div>
-                  <h3 className="text-2xl font-bold">
-                    Master of Aquaculture
-                  </h3>
-
-                  <p className="text-green-700">
-                    Can Tho University • 2025 - 2027
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-green-50 rounded-3xl p-8 shadow-md">
-              <div className="flex items-center gap-4 mb-4">
-                <GraduationCap className="text-green-700 w-8 h-8" />
-
-                <div>
-                  <h3 className="text-2xl font-bold">
-                    Bachelor of Fisheries Resources Management
-                  </h3>
-
-                  <p className="text-green-700">
-                    Can Tho University • GPA 3.2/4.0
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </section>
 
-      {/* PUBLICATIONS */}
-      <section
-        id="publications"
-        className="py-24 px-6"
-      >
-        <div className="max-w-6xl mx-auto">
+      </div>
 
-          <h2 className="text-4xl font-bold mb-14 text-center text-green-800">
-            Publications
-          </h2>
+      <div class="hero-image">
 
-          <div className="space-y-8">
+        <img
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop"
+          alt="Profile"
+        >
 
-            <div className="bg-white rounded-3xl p-8 shadow-md">
-              <div className="flex items-start gap-4">
-                <BookOpen className="text-green-700 w-7 h-7 mt-1" />
-
-                <div>
-                  <h3 className="text-xl font-bold mb-2">
-                    Assessment of the current status of the Pangasiidae family
-                    in the lower Mekong River from 2017 to 2019
-                  </h3>
-
-                  <p className="text-gray-600">
-                    Journal of Mekong Fisheries • 2020
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* AWARDS */}
-      <section className="py-24 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-
-          <h2 className="text-4xl font-bold mb-14 text-center text-green-800">
-            Awards & Achievements
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-
-            {[
-              "Certificate of Merit (2023)",
-              "Technical Innovation Award",
-              "Very Good GPA Achievement",
-            ].map((award, index) => (
-              <div
-                key={index}
-                className="bg-green-50 rounded-3xl p-8 shadow-md text-center"
-              >
-                <Award className="w-10 h-10 text-green-700 mx-auto mb-4" />
-
-                <h3 className="font-bold text-lg">
-                  {award}
-                </h3>
-              </div>
-            ))}
-
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section
-        id="contact"
-        className="py-24 px-6 bg-gradient-to-br from-green-700 to-green-900 text-white"
-      >
-        <div className="max-w-4xl mx-auto text-center">
-
-          <h2 className="text-4xl font-bold mb-8">
-            Contact Me
-          </h2>
-
-          <p className="text-lg text-green-100 mb-10">
-            Open for research collaboration, scientific networking,
-            and academic partnerships.
-          </p>
-
-          <div className="space-y-4 text-lg">
-            <p>📧 trangdiemdinh@gmail.com</p>
-            <p>📞 +84 918 554 389</p>
-            <p>📍 Ca Mau Province, Vietnam</p>
-          </div>
-        </div>
-      </section>
+      </div>
 
     </div>
-  );
-}
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About Me</h2>
+
+        <p>
+          Fisheries Ecology • Biodiversity • Sustainable Aquaculture
+        </p>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="card">
+
+          <p>
+            I am currently working as a researcher at the Research Institute
+            for Aquaculture No.2 (RIA2), focusing on fisheries ecology,
+            aquatic biodiversity conservation, fish migration,
+            ecosystem monitoring, and sustainable aquaculture development
+            in the Mekong Delta.
+          </p>
+
+        </div>
+
+        <div class="stats">
+
+          <div class="card stat-box">
+            <h3>8+</h3>
+            <p>Years Experience</p>
+          </div>
+
+          <div class="card stat-box">
+            <h3>15+</h3>
+            <p>Research Projects</p>
+          </div>
+
+          <div class="card stat-box">
+            <h3>10+</h3>
+            <p>Publications</p>
+          </div>
+
+          <div class="card stat-box">
+            <h3>20+</h3>
+            <p>International Activities</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Experience</h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+
+          <div class="card">
+
+            <h3>
+              Research Institute for Aquaculture No.2 (RIA2)
+            </h3>
+
+            <h4>
+              Researcher • 2017 - Present
+            </h4>
+
+            <p>
+              Conducting studies related to fisheries assessment,
+              fish migration, aquatic biodiversity conservation,
+              ecosystem monitoring, river ecology,
+              and sustainable aquaculture.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Research Projects</h2>
+      </div>
+
+      <div class="project-grid">
+
+        <div class="card">
+          <h3>Fish Abundance Monitoring</h3>
+          <p>Mekong River fisheries monitoring and biodiversity assessment.</p>
+        </div>
+
+        <div class="card">
+          <h3>Sustainable Shrimp Farming</h3>
+          <p>Research on sustainable aquaculture and low-carbon shrimp farming.</p>
+        </div>
+
+        <div class="card">
+          <h3>Fish Larvae Monitoring</h3>
+          <p>Monitoring abundance and diversity of fish larvae in the Mekong Delta.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+
+  <section id="education">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Education</h2>
+      </div>
+
+      <div class="project-grid">
+
+        <div class="card">
+
+          <h3>
+            Master of Aquaculture
+          </h3>
+
+          <p>
+            Can Tho University
+          </p>
+
+          <p>
+            2025 - 2027
+          </p>
+
+        </div>
+
+        <div class="card">
+
+          <h3>
+            Bachelor of Fisheries Resources Management
+          </h3>
+
+          <p>
+            GPA: 3.2/4.0
+          </p>
+
+          <p>
+            Can Tho University
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <div class="container">
+
+      <h2>
+        Contact Me
+      </h2>
+
+      <p>
+        Open for academic collaboration and research partnerships.
+      </p>
+
+      <br>
+
+      <p>
+        📧 trangdiemdinh@gmail.com
+      </p>
+
+      <p>
+        📞 +84 918 554 389
+      </p>
+
+      <p>
+        📍 Ca Mau Province, Vietnam
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Dinh Trang Diem • Academic Portfolio
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // Navbar shadow on scroll
+
+    window.addEventListener('scroll', function(){
+
+      const header = document.querySelector('header');
+
+      if(window.scrollY > 50){
+        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+      }else{
+        header.style.boxShadow = 'none';
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
 ```
